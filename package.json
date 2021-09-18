@@ -1,0 +1,15 @@
+{
+  "name": "web-server",
+  "version": "0.01",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremy Herbst",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
