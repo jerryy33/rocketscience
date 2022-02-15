@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import './style.css';
 
 const config = {
     type: Phaser.AUTO,
@@ -24,7 +23,6 @@ const config = {
 let asteroid;
 let asteroids;
 let game = new Phaser.Game(config);
-
 /**
 */
 function preload() {
@@ -36,16 +34,25 @@ function preload() {
 /**
 */
 function create() {
-    this.add.image(500, 1200, 'universe');
-    asteroid = this.physics.add.image(100, 100, 'asteroid')
-    asteroid.setBounce(0.4);
-    asteroid.setCollideWorldBounds(true);
-    asteroids = this.physics.add.group();
-    asteroids.create('asteroid').setVelocity(100, 0);
+    const universe = this.add.image(0, 0, 'universe');
+    // TODO Scalemanger should handle this in the future
+    universe.setScale(2);
+
+    const asteroids = this.physics.add.group({
+        key: 'asteroid',
+        bounceY: 0.2,
+        quantity: 20,
+        collideWorldBounds: true,
+    });
+    asteroids.children.iterate((child) =>{
+        child.setPosition(Phaser.Math.RND.between(0, this.sys.canvas.width),
+            Phaser.Math.RND.between(0, this.sys.canvas.height/2));
+        child.setScale(0.05);
+    });
 }
 
 /**
 */
-function update ()
+function update()
 {
 }
