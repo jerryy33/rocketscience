@@ -1,5 +1,44 @@
 import Phaser from 'phaser';
+import Asteroids from './Asteroids.js';
 
+/**
+ */
+class Game extends Phaser.Scene {
+    /**
+     * @constructor
+    */
+    constructor() {
+        super();
+        this.asteroids;
+    }
+
+    /**
+     * Preloads all assets for the game
+     */
+    preload() {
+        this.load.image('universe', 'assets/universe.jpg');
+        this.load.image('asteroid', 'assets/asteroid.png');
+        this.load.image('star', 'assets/star.png');
+    }
+
+    /**
+     * Creates the environment for our game including all objects
+     */
+    create() {
+        const universe = this.add.image(0, 0, 'universe');
+        // TODO Scalemanger should handle this in the future
+        universe.setScale(2);
+        this.asteroids = new Asteroids(this.physics.world, this);
+        this.asteroids.setChildrenPositions();
+    }
+
+    /**
+     * Updates the game
+     */
+    update() {
+        this.physics.world.wrap(this.asteroids);
+    }
+}
 const config = {
     type: Phaser.AUTO,
     scale: {
@@ -10,49 +49,9 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 300},
-            debug: false,
+            debug: true,
         },
     },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update,
-    },
+    scene: Game,
 };
-
-let asteroid;
-let asteroids;
-let game = new Phaser.Game(config);
-/**
-*/
-function preload() {
-    this.load.image('universe', 'assets/universe.jpg');
-    this.load.image('asteroid', 'assets/asteroid.png');
-    this.load.image('bomb', 'assets/bomb.png');
-}
-
-/**
-*/
-function create() {
-    const universe = this.add.image(0, 0, 'universe');
-    // TODO Scalemanger should handle this in the future
-    universe.setScale(2);
-
-    const asteroids = this.physics.add.group({
-        key: 'asteroid',
-        bounceY: 0.2,
-        quantity: 20,
-        collideWorldBounds: true,
-    });
-    asteroids.children.iterate((child) =>{
-        child.setPosition(Phaser.Math.RND.between(0, this.sys.canvas.width),
-            Phaser.Math.RND.between(0, this.sys.canvas.height/2));
-        child.setScale(0.05);
-    });
-}
-
-/**
-*/
-function update()
-{
-}
+const game = new Phaser.Game(config);
