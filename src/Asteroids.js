@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 /**
  * Represents a field of asteroids as an dynamic physics group
  */
