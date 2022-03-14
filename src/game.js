@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import Asteroids from './Asteroids.js';
 import Rocket from './Rocket.js';
+import RocketAsteroidsCollider from './RocketAsteroidsCollider.js';
+import Scoreboard from './Scoreboard.js';
 
 /**
  */
@@ -13,6 +15,7 @@ class Game extends Phaser.Scene {
         this.asteroids;
         this.rocket;
         this.cursors;
+        this.scoreboard;
     }
 
     /**
@@ -31,8 +34,10 @@ class Game extends Phaser.Scene {
     create() {
         this.cursors = this.input.keyboard.createCursorKeys();
         const universe = this.add.image(0, 0, 'universe');
+        this.scoreboard = new Scoreboard(this.data, this);
         // TODO Scalemanger should handle this in the future
-        universe.setScale(2);
+        universe.scaleX = window.innerWidth;
+        universe.scaleY = window.innerHeight;
         this.asteroids = new Asteroids(this.physics.world, this);
         this.asteroids.setChildrenPositions();
 
@@ -40,6 +45,10 @@ class Game extends Phaser.Scene {
         const frames = atlasTexture.getFrameNames();
         console.log(frames);
         this.rocket = new Rocket(this, 50, 300, 'rockets', frames[1]);
+        const rocketAsteroidCollider = new RocketAsteroidsCollider(
+            this.physics.world, false, this.rocket, this.asteroids);
+        this.physics.world.colliders.add(rocketAsteroidCollider);
+        this.scoreboard.updateLives(10);
     }
 
     /**
@@ -47,7 +56,9 @@ class Game extends Phaser.Scene {
      */
     update() {
         this.physics.world.wrap(this.asteroids);
+        this.physics.world.wrap(this.rocket);
         this.rocket.move();
+        // this.scoreboard.updateLives(10);
     }
 }
 const config = {

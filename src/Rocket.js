@@ -26,14 +26,16 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
 
     /**
      * Control the velocity based on which control key is down.
-     * Down key sets the velocity downwards and
-     * the right key rightwards
+     * Down key sets the velocity downwards,
+     * the right key rightwards and the up key upwards
      */
     move() {
         if (this.scene.cursors.right.isDown) {
             this.setVelocity(50, 0);
         } else if (this.scene.cursors.down.isDown) {
             this.setVelocity(0, 50);
+        } else if (this.scene.cursors.up.isDown) {
+            this.setVelocity(0, -50);
         }
     }
 }
