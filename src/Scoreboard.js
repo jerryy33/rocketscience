@@ -1,37 +1,53 @@
 /**
- * [text description]
- * @type {[type]}
+ * A basic scoreboard displaying the current amount of lives,
+ * the score and the current level number
  */
 export default class Scoreboard {
     /**
      * @constructor
-     * @param {[type]} data   [description]
-     * @param {[type]} scene  [description]
+     * @param {Phaser.Data.DataManager} data the data manager for the scene
+     * @param {Phaser.Scene} scene the scene where the scoreboard
+     * will be created
      */
     constructor(data, scene) {
         data.set('lives', 3);
         data.set('level', 5);
         data.set('score', 2000);
 
-        const text = scene.add.text(100, 100, 'HI',
-            {font: 'Arial', fill: '#00ff00'});
-        text.setText([
+        this.scoreboardText = [
             'Level: ' + data.get('level'),
             'Lives: ' + data.get('lives'),
             'Score: ' + data.get('score'),
-        ]);
-        console.log(data.get('level'));
+        ];
+
+        this.text = scene.add.text(10, 10, '',
+            {font: 'Arial', fill: '#00ff00'});
+        this.text.setText(this.scoreboardText);
+
         this.data = data;
         this.scene = scene;
     }
+
     /**
-     * [updateLives description]
-     * @param  {number} amount               [description]
+     * Updates the number of lives the player has currently
+     * @param  {number} amount the number added or subtracted
+     * of the current number of lives
      */
     updateLives(amount) {
-        console.log(this.scene.data.values.lives);
         this.scene.data.values.lives += amount;
-        console.log(this.scene.data.values.lives);
-        this.scene.text.updateText();
+        this.text.setText(this.updateScoreboardText());
+    }
+
+    /**
+     * Updates the scoreboard with the current data and returns it
+     * @return {Phaser.GameObjects.Text} the updated scoreboard text
+     */
+    updateScoreboardText() {
+        this.scoreboardText = [
+            'Level: ' + this.data.get('level'),
+            'Lives: ' + this.data.get('lives'),
+            'Score: ' + this.data.get('score'),
+        ];
+        return this.scoreboardText;
     }
 }
