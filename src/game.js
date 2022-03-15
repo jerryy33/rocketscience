@@ -5,11 +5,13 @@ import RocketAsteroidsCollider from './RocketAsteroidsCollider.js';
 import Scoreboard from './Scoreboard.js';
 
 /**
+ * Our game class
+ * @extends Phaser.Scene
  */
-class Game extends Phaser.Scene {
+export default class Game extends Phaser.Scene {
     /**
      * @constructor
-    */
+     */
     constructor() {
         super();
         this.asteroids;
@@ -33,11 +35,14 @@ class Game extends Phaser.Scene {
      */
     create() {
         this.cursors = this.input.keyboard.createCursorKeys();
+
         const universe = this.add.image(0, 0, 'universe');
         this.scoreboard = new Scoreboard(this.data, this);
+
         // TODO Scalemanger should handle this in the future
         universe.scaleX = window.innerWidth;
         universe.scaleY = window.innerHeight;
+
         this.asteroids = new Asteroids(this.physics.world, this);
         this.asteroids.setChildrenPositions();
 
@@ -48,7 +53,6 @@ class Game extends Phaser.Scene {
         const rocketAsteroidCollider = new RocketAsteroidsCollider(
             this.physics.world, false, this.rocket, this.asteroids);
         this.physics.world.colliders.add(rocketAsteroidCollider);
-        this.scoreboard.updateLives(10);
     }
 
     /**
@@ -58,7 +62,6 @@ class Game extends Phaser.Scene {
         this.physics.world.wrap(this.asteroids);
         this.physics.world.wrap(this.rocket);
         this.rocket.move();
-        // this.scoreboard.updateLives(10);
     }
 }
 const config = {
