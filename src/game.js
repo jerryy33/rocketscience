@@ -3,6 +3,7 @@ import Asteroids from './Asteroids.js';
 import Rocket from './Rocket.js';
 import RocketAsteroidsCollider from './RocketAsteroidsCollider.js';
 import Scoreboard from './Scoreboard.js';
+import Endscreen from './Endscreen.js';
 
 /**
  * Our game class
@@ -50,9 +51,12 @@ export default class Game extends Phaser.Scene {
         const frames = atlasTexture.getFrameNames();
         console.log(frames);
         this.rocket = new Rocket(this, 50, 300, 'rockets', frames[1]);
-        const rocketAsteroidCollider = new RocketAsteroidsCollider(
+        const rocketAsteroidCollider = new RocketAsteroidsCollider(this,
             this.physics.world, false, this.rocket, this.asteroids);
         this.physics.world.colliders.add(rocketAsteroidCollider);
+        const endscreen = new Endscreen(this, this.scoreboard.scoreboardText);
+        endscreen.listenToClick();
+        this.events.on('pause', this.gamOverListener);
     }
 
     /**
@@ -62,6 +66,17 @@ export default class Game extends Phaser.Scene {
         this.physics.world.wrap(this.asteroids);
         this.physics.world.wrap(this.rocket);
         this.rocket.move();
+    }
+
+    /**
+     * [gamOverListener description]
+     */
+    gamOverListener(systems) {
+        const scene = systems.scene;
+        console.log(scene.scoreboard.scoreboardText);
+        // const endscreen = new Endscreen(scene, scene.scoreboard.scoreboardText);
+        // endscreen.listenToClick();
+        scene.scoreboard.text.destroy();
     }
 }
 const config = {
