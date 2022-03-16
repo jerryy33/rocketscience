@@ -20,6 +20,7 @@ export default class Scoreboard {
             'Score: ' + data.get('score'),
         ];
 
+        // TODO Scalemanger
         this.text = scene.add.text(10, 10, '',
             {font: 'Arial', fill: '#00ff00'});
         this.text.setText(this.scoreboardText);
@@ -30,11 +31,14 @@ export default class Scoreboard {
 
     /**
      * Updates the number of lives the player has currently
-     * @param  {number} amount the number added or subtracted
+     * @param {number} amount the number added or subtracted
      * of the current number of lives
      */
     updateLives(amount) {
-        this.scene.data.values.lives += amount;
+        this.data.values.lives += amount;
+        if (this.data.values.lives <= 0) {
+            this.scene.scene.pause();
+        }
         this.text.setText(this.updateScoreboardText());
     }
 
