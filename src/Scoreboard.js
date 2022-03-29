@@ -11,7 +11,7 @@ export default class Scoreboard {
      */
     constructor(data, scene) {
         data.set('lives', 3);
-        data.set('level', 5);
+        data.set('level', 0);
         data.set('score', 2000);
 
         this.scoreboardText = [
@@ -37,14 +37,14 @@ export default class Scoreboard {
     updateLives(amount) {
         this.data.values.lives += amount;
         if (this.data.values.lives <= 0) {
-            this.scene.scene.pause();
+            this.scene.scene.start('endScreen', this.updateScoreboardText());
         }
         this.text.setText(this.updateScoreboardText());
     }
 
     /**
      * Updates the scoreboard with the current data and returns it
-     * @return {Phaser.GameObjects.Text} the updated scoreboard text
+     * @return {string} the updated scoreboard text
      */
     updateScoreboardText() {
         this.scoreboardText = [

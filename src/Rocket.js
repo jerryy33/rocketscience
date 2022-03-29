@@ -31,11 +31,11 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
      */
     move() {
         if (this.scene.cursors.right.isDown) {
-            this.setVelocity(50, 0);
+            this.setVelocity(100, 0);
         } else if (this.scene.cursors.down.isDown) {
-            this.setVelocity(0, 50);
+            this.setVelocity(0, 100);
         } else if (this.scene.cursors.up.isDown) {
-            this.setVelocity(0, -50);
+            this.setVelocity(0, -100);
         }
     }
 }
