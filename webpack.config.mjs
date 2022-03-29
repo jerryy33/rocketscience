@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 export default {
     entry: {
-        game: './src/game.js',
+        game: './src/main.js',
         app: './src/app.js',
         particles: './node_modules/particles.js/particles.js',
     },

@@ -3,7 +3,6 @@ import Asteroids from './Asteroids.js';
 import Rocket from './Rocket.js';
 import RocketAsteroidsCollider from './RocketAsteroidsCollider.js';
 import Scoreboard from './Scoreboard.js';
-import Endscreen from './Endscreen.js';
 
 /**
  * Our game class
@@ -14,7 +13,7 @@ export default class Game extends Phaser.Scene {
      * @constructor
      */
     constructor() {
-        super();
+        super({key: 'mainGame'});
         this.asteroids;
         this.rocket;
         this.cursors;
@@ -54,9 +53,6 @@ export default class Game extends Phaser.Scene {
         const rocketAsteroidCollider = new RocketAsteroidsCollider(this,
             this.physics.world, false, this.rocket, this.asteroids);
         this.physics.world.colliders.add(rocketAsteroidCollider);
-        const endscreen = new Endscreen(this, this.scoreboard.scoreboardText);
-        endscreen.listenToClick();
-        this.events.on('pause', this.gamOverListener);
     }
 
     /**
@@ -67,31 +63,4 @@ export default class Game extends Phaser.Scene {
         this.physics.world.wrap(this.rocket);
         this.rocket.move();
     }
-
-    /**
-     * [gamOverListener description]
-     */
-    gamOverListener(systems) {
-        const scene = systems.scene;
-        console.log(scene.scoreboard.scoreboardText);
-        // const endscreen = new Endscreen(scene, scene.scoreboard.scoreboardText);
-        // endscreen.listenToClick();
-        scene.scoreboard.text.destroy();
-    }
 }
-const config = {
-    type: Phaser.AUTO,
-    scale: {
-        width: window.innerWidth,
-        height: window.innerHeight,
-    },
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: {y: 300},
-            debug: true,
-        },
-    },
-    scene: Game,
-};
-const game = new Phaser.Game(config);
