@@ -5,8 +5,6 @@ import Phaser from 'phaser';
 export default class Endscreen extends Phaser.Scene {
     /**
     * @constructor
-    * @param {Phaser.Scene} scene the scene that ended
-    * @param {string} scoreboardText  the text of the latest scoreboard
     */
     constructor() {
         super({key: 'endScreen'});
@@ -18,15 +16,23 @@ export default class Endscreen extends Phaser.Scene {
      * @param  {string} scoreboardText the latest scoreborad text
      */
     create(scoreboardText) {
+        scoreboardText = [
+            'Level: ' + 0,
+            'Lives: ' + 0,
+            'Score: ' + 0,
+        ];
         console.log(scoreboardText);
-        const style = {font: '74px Arial', fill: '#00ff00',
-            backgroundColor: '#000000'};
+        const style = {fontFamily: 'Arial', fontSize: '50px',
+            fontStyle: 'italic', color: '#00ff00', backgroundColor: '#000000',
+            align: 'center'};
         // TODO Scalemanger
-        this.text = this.add.text(200, 100, scoreboardText, style);
-        console.log(this.text.getTextMetrics());
+        this.stats = this.add.text(200, 100, scoreboardText, style);
         this.newTryButton = this.add.text(200, 400, 'Resume', style);
         this.newTryButton.setInteractive({useHandCursor: true});
-
+        console.log(this.stats);
+        const rec = this.add.rectangle(300, 270, 400, 400);
+        rec.setStrokeStyle(4, 0x0ff00);
+        console.log(rec);
         this.restartMainGame();
     }
     /**

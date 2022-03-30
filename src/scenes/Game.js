@@ -1,7 +1,9 @@
 import Phaser from 'phaser';
 import Asteroids from '../entities/Asteroids.js';
+import Stars from '../entities/Stars.js';
 import Rocket from '../entities/Rocket.js';
 import RocketAsteroidsCollider from '../colliders/RocketAsteroidsCollider.js';
+import RocketStarsCollider from '../colliders/RocketStarsCollider.js';
 import Scoreboard from '../entities/Scoreboard.js';
 
 /**
@@ -15,6 +17,7 @@ export default class Game extends Phaser.Scene {
     constructor() {
         super({key: 'mainGame'});
         this.asteroids;
+        this.stars;
         this.rocket;
         this.cursors;
         this.scoreboard;
@@ -45,14 +48,21 @@ export default class Game extends Phaser.Scene {
 
         this.asteroids = new Asteroids(this.physics.world, this);
         this.asteroids.setChildrenPositions();
+        this.stars = new Stars(this.physics.world, this);
 
         const atlasTexture = this.textures.get('rockets');
         const frames = atlasTexture.getFrameNames();
         console.log(frames);
         this.rocket = new Rocket(this, 50, 300, 'rockets', frames[1]);
+        // create colliders
         const rocketAsteroidCollider = new RocketAsteroidsCollider(this,
             this.physics.world, false, this.rocket, this.asteroids);
+        const rocketStarCollider = new RocketStarsCollider(this,
+            this.physics.world, false, this.rocket, this.stars);
+
+        // add colliders to the world
         this.physics.world.colliders.add(rocketAsteroidCollider);
+        this.physics.world.colliders.add(rocketStarCollider);
     }
 
     /**

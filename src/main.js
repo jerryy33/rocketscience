@@ -24,4 +24,4 @@ const game = new Phaser.Game(config);
 game.scene.add('mainGame', mainGame);
 game.scene.add('endScreen', endScreen);
 
-game.scene.start('mainGame');
+game.scene.start('endScreen');
