@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
-import Asteroids from './Asteroids.js';
-import Rocket from './Rocket.js';
-import RocketAsteroidsCollider from './RocketAsteroidsCollider.js';
-import Scoreboard from './Scoreboard.js';
+import Asteroids from '../entities/Asteroids.js';
+import Rocket from '../entities/Rocket.js';
+import RocketAsteroidsCollider from '../colliders/RocketAsteroidsCollider.js';
+import Scoreboard from '../entities/Scoreboard.js';
 
 /**
  * Our game class

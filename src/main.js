@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import Endscreen from './Endscreen.js';
-import Game from './Game.js';
+import Endscreen from './scenes/Endscreen.js';
+import Game from './scenes/Game.js';
 
 const mainGame = new Game();
 const endScreen = new Endscreen();
