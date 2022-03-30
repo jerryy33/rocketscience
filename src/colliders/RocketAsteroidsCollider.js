@@ -22,7 +22,7 @@ export default class RocketAsteroidsCollider
             console.log('collision');
         };
         const collideCallback = function(rocket, asteroid) {
-            // play animations
+            // TODO play animations
             // reduce Number of lives
             scene.scoreboard.updateLives(-1);
 
