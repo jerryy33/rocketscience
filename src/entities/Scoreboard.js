@@ -12,7 +12,7 @@ export default class Scoreboard {
     constructor(data, scene) {
         data.set('lives', 3);
         data.set('level', 0);
-        data.set('score', 2000);
+        data.set('score', 0);
 
         this.scoreboardText = [
             'Level: ' + data.get('level'),
@@ -39,6 +39,13 @@ export default class Scoreboard {
         if (this.data.values.lives <= 0) {
             this.scene.scene.start('endScreen', this.updateScoreboardText());
         }
+        this.text.setText(this.updateScoreboardText());
+    }
+    /**
+     * Updates the score when a star is collected by a rocket
+     */
+    updateScore() {
+        this.data.values.score += 10;
         this.text.setText(this.updateScoreboardText());
     }
 
