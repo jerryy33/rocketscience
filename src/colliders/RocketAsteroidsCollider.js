@@ -23,6 +23,7 @@ export default class RocketAsteroidsCollider
         };
         const collideCallback = function(rocket, asteroid) {
             // TODO play animations
+            rocket.play('noBoost', true);
             // reduce Number of lives
             scene.scoreboard.updateLives(-1);
 

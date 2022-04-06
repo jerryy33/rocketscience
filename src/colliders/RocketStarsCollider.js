@@ -17,6 +17,7 @@ export default class RocketStarsCollider
         const collideCallback = function(rocket, star) {
             scene.scoreboard.updateScore();
             star.destroy();
+            rocket.play('noBoost', true);
             rocket.setVelocity(100, 0);
             console.log('collision with star');
         };

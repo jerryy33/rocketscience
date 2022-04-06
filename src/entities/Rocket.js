@@ -18,12 +18,41 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
         // adds a new rocket to the scene
         scene.add.existing(this);
         scene.physics.add.existing(this);
+        this.#initAnimations();
         // TODO Scalemanager
         this.setScale(0.1);
         this.angle = 90;
         this.body.allowGravity = false;
     }
-
+    /**
+     *
+     */
+    #initAnimations() {
+        this.scene.anims.create({
+            key: 'boost',
+            frameRate: 10,
+            frames: this.scene.anims.generateFrameNames('rocket', {
+                prefix: 'rocket',
+                suffix: '.png',
+                start: 2,
+                end: 2,
+                zeroPad: 2,
+            }),
+            repeat: 1,
+        });
+        this.scene.anims.create({
+            key: 'noBoost',
+            frameRate: 10,
+            frames: this.scene.anims.generateFrameNames('rocket', {
+                prefix: 'rocket',
+                suffix: '.png',
+                start: 2,
+                end: 1,
+                zeroPad: 2,
+            }),
+            repeat: 0,
+        });
+    }
     /**
      * Control the velocity based on which control key is down.
      * Down key sets the velocity downwards,
@@ -31,10 +60,13 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
      */
     move() {
         if (this.scene.cursors.right.isDown) {
+            this.play('boost', true);
             this.setVelocity(100, 0);
         } else if (this.scene.cursors.down.isDown) {
+            this.play('noBoost', true);
             this.setVelocity(0, 100);
         } else if (this.scene.cursors.up.isDown) {
+            this.play('noBoost', true);
             this.setVelocity(0, -100);
         }
     }

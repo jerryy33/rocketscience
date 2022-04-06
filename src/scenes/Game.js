@@ -30,7 +30,8 @@ export default class Game extends Phaser.Scene {
         this.load.image('universe', 'assets/universe.jpg');
         this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('star', 'assets/star.png');
-        this.load.atlas('rockets', 'assets/rocket.png', 'assets/rocket.json');
+        this.load.atlas('rocket', 'assets/Rocket_Sprite.png',
+            'assets/Rocket_Sprite.json');
     }
 
     /**
@@ -50,10 +51,10 @@ export default class Game extends Phaser.Scene {
         this.asteroids.setChildrenPositions();
         this.stars = new Stars(this.physics.world, this);
 
-        const atlasTexture = this.textures.get('rockets');
+        const atlasTexture = this.textures.get('rocket');
         const frames = atlasTexture.getFrameNames();
         console.log(frames);
-        this.rocket = new Rocket(this, 50, 300, 'rockets', frames[1]);
+        this.rocket = new Rocket(this, 50, 300, 'rocket', frames[0]);
         // create colliders
         const rocketAsteroidCollider = new RocketAsteroidsCollider(this,
             this.physics.world, false, this.rocket, this.asteroids);
