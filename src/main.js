@@ -8,8 +8,10 @@ const endScreen = new Endscreen();
 const config = {
     type: Phaser.AUTO,
     scale: {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        mode: Phaser.Scale.RESIZE,
+        // autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 1000,
+        height: 1000,
     },
     physics: {
         default: 'arcade',
@@ -24,4 +26,4 @@ const game = new Phaser.Game(config);
 game.scene.add('mainGame', mainGame);
 game.scene.add('endScreen', endScreen);
 
-game.scene.start('endScreen');
+game.scene.start('mainGame');

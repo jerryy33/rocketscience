@@ -25,7 +25,7 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
         this.body.allowGravity = false;
     }
     /**
-     *
+     * Creates animations for this class specifically
      */
     #initAnimations() {
         this.scene.anims.create({
@@ -56,7 +56,8 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
     /**
      * Control the velocity based on which control key is down.
      * Down key sets the velocity downwards,
-     * the right key rightwards and the up key upwards
+     * the right key rightwards and the up key upwards.
+     * Also plays Animations for this class
      */
     move() {
         if (this.scene.cursors.right.isDown) {

@@ -38,14 +38,14 @@ export default class Game extends Phaser.Scene {
      * Creates the environment for our game including all objects
      */
     create() {
+        this.canvas = this.sys.game.canvas;
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        const universe = this.add.image(0, 0, 'universe');
+        const universe = this.add.image(this.canvas.width/2,
+            this.canvas.height/2, 'universe');
         this.scoreboard = new Scoreboard(this.data, this);
 
-        // TODO Scalemanger should handle this in the future
-        universe.scaleX = window.innerWidth;
-        universe.scaleY = window.innerHeight;
+        // TODO Scalemanger should handle scaling in the future
 
         this.asteroids = new Asteroids(this.physics.world, this);
         this.asteroids.setChildrenPositions();
