@@ -18,8 +18,7 @@ export default class RocketStarsCollider
             scene.scoreboard.updateScore();
             star.destroy();
             rocket.play('noBoost', true);
-            rocket.setVelocity(100, 0);
-            console.log('collision with star');
+            rocket.setVelocity(60, 0);
         };
         super(world, overlapOnly, object1, object2, collideCallback);
     }
