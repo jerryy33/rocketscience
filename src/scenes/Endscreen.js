@@ -16,15 +16,16 @@ export default class Endscreen extends Phaser.Scene {
      * @param  {string} scoreboardText the latest scoreborad text
      */
     create(scoreboardText) {
-        scoreboardText = [
-            'Level: ' + 0,
-            'Lives: ' + 0,
-            'Score: ' + 0,
-        ];
+        // scoreboardText = [
+        //     'Level: ' + 0,
+        //     'Lives: ' + 0,
+        //     'Score: ' + 0,
+        // ];
         const style = {fontFamily: 'Arial', fontSize: '50px',
             fontStyle: 'italic', color: '#00ff00', backgroundColor: '#000000',
             align: 'center'};
         // TODO Scalemanger
+        console.log(scoreboardText);
         this.stats = this.add.text(200, 100, scoreboardText, style);
         this.newTryButton = this.add.text(200, 400, 'Resume', style);
         this.newTryButton.setInteractive({useHandCursor: true});
