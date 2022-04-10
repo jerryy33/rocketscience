@@ -5,6 +5,7 @@ import Rocket from '../entities/Rocket.js';
 import RocketAsteroidsCollider from '../colliders/RocketAsteroidsCollider.js';
 import RocketStarsCollider from '../colliders/RocketStarsCollider.js';
 import Scoreboard from '../entities/Scoreboard.js';
+import PauseButton from '../buttons/PauseButton.js';
 
 /**
  * Our game class
@@ -16,10 +17,12 @@ export default class Game extends Phaser.Scene {
      */
     constructor() {
         super({key: 'mainGame'});
+        this.canvas;
         this.asteroids;
         this.stars;
         this.rocket;
         this.cursors;
+        this.pauseButton;
         this.scoreboard;
     }
 
@@ -27,7 +30,7 @@ export default class Game extends Phaser.Scene {
      * Preloads all assets for the game
      */
     preload() {
-        this.load.image('universe', 'assets/universe.jpg');
+        this.load.image('universe', 'assets/universe.png');
         this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('star', 'assets/star.png');
         this.load.atlas('rocket', 'assets/Rocket_Sprite.png',
@@ -41,14 +44,13 @@ export default class Game extends Phaser.Scene {
         this.canvas = this.sys.game.canvas;
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        const universe = this.add.image(this.canvas.width/2,
-            this.canvas.height/2, 'universe');
+        const universe = this.add.image(0, 0, 'universe').setOrigin(0, 0);
         this.scoreboard = new Scoreboard(this.data, this);
+        this.pauseButton = new PauseButton(this);
 
         // TODO Scalemanger should handle scaling in the future
 
         this.asteroids = new Asteroids(this.physics.world, this);
-        this.asteroids.setChildrenPositions();
         this.stars = new Stars(this.physics.world, this);
 
         const atlasTexture = this.textures.get('rocket');
@@ -73,5 +75,7 @@ export default class Game extends Phaser.Scene {
         this.physics.world.wrap(this.asteroids);
         this.physics.world.wrap(this.rocket);
         this.rocket.move();
+
+        this.asteroids.updateOnWorldBounds(this.physics.world.bounds);
     }
 }
