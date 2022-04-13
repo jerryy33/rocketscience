@@ -27,7 +27,7 @@ export default class Endscreen extends Phaser.Scene {
         // TODO Scalemanger
         console.log(scoreboardText);
         this.stats = this.add.text(200, 100, scoreboardText, style);
-        this.newTryButton = this.add.text(200, 400, 'Resume', style);
+        this.newTryButton = this.add.text(200, 400, 'Retry', style);
         this.newTryButton.setInteractive({useHandCursor: true});
         const [x, y] = [this.stats.getTopLeft().x,
             this.stats.getBottomRight().y];
@@ -43,6 +43,7 @@ export default class Endscreen extends Phaser.Scene {
         this.newTryButton.on('pointerdown', () => {
             console.log('pointerdown');
             this.scene.start('mainGame');
+            this.scene.start('pauseMenu');
         });
     }
 }

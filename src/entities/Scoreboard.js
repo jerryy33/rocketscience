@@ -37,6 +37,8 @@ export default class Scoreboard {
     updateLives(amount) {
         this.data.values.lives += amount;
         if (this.data.values.lives <= 0) {
+            this.scene.scene.stop('mainGame');
+            this.scene.scene.stop('pauseMenu');
             this.scene.scene.start('endScreen', this.updateScoreboardText());
         }
         this.text.setText(this.updateScoreboardText());

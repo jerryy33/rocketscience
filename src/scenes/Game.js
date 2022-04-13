@@ -5,7 +5,7 @@ import Rocket from '../entities/Rocket.js';
 import RocketAsteroidsCollider from '../colliders/RocketAsteroidsCollider.js';
 import RocketStarsCollider from '../colliders/RocketStarsCollider.js';
 import Scoreboard from '../entities/Scoreboard.js';
-import PauseButton from '../buttons/PauseButton.js';
+
 
 /**
  * Our game class
@@ -22,7 +22,6 @@ export default class Game extends Phaser.Scene {
         this.stars;
         this.rocket;
         this.cursors;
-        this.pauseButton;
         this.scoreboard;
     }
 
@@ -42,11 +41,11 @@ export default class Game extends Phaser.Scene {
      */
     create() {
         this.canvas = this.sys.game.canvas;
+
         this.cursors = this.input.keyboard.createCursorKeys();
 
         const universe = this.add.image(0, 0, 'universe').setOrigin(0, 0);
         this.scoreboard = new Scoreboard(this.data, this);
-        this.pauseButton = new PauseButton(this);
 
         // TODO Scalemanger should handle scaling in the future
 
