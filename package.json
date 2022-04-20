@@ -1,16 +1,22 @@
 {
-  "name": "RocketScience",
-  "version": "0.0.1",
-  "description": "",
+  "name": "rocket-science",
+  "version": "1.0.0-alpha.1",
+  "license": "MIT",
+  "author": "Jeremy Herbst jeremy.herbst111@gmail.com",
+  "homepage": "TODO",
+  "description": "This is a simple phaser game where you can fly through the universe",
+  "repository": {
+	   "type": "git",
+	    "url": "https://github.com/jerryy33/rocketscience.git"
+  },
   "private": true,
   "type": "module",
+  "main": "src/app.js",
   "scripts": {
     "serve": "webpack serve",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeremy Herbst",
-  "license": "ISC",
   "devDependencies": {
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
