@@ -56,11 +56,12 @@ export default class Game extends Phaser.Scene {
         const frames = atlasTexture.getFrameNames();
         console.log(frames);
         this.rocket = new Rocket(this, 50, 300, 'rocket', frames[0]);
+
         // create colliders
         const rocketAsteroidCollider = new RocketAsteroidsCollider(this,
-            this.physics.world, false, this.rocket, this.asteroids);
+            this.physics.world, this.rocket, this.asteroids);
         const rocketStarCollider = new RocketStarsCollider(this,
-            this.physics.world, false, this.rocket, this.stars);
+            this.physics.world, this.rocket, this.stars);
 
         // add colliders to the world
         this.physics.world.colliders.add(rocketAsteroidCollider);
