@@ -45,6 +45,18 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
             frames: this.scene.anims.generateFrameNames('rocket', {
                 prefix: 'rocket',
                 suffix: '.png',
+                start: 2,
+                end: 1,
+                zeroPad: 2,
+            }),
+            repeat: 0,
+        });
+        this.scene.anims.create({
+            key: 'sideways',
+            frameRate: 10,
+            frames: this.scene.anims.generateFrameNames('rocket', {
+                prefix: 'rocket',
+                suffix: '.png',
                 start: 1,
                 end: 1,
                 zeroPad: 2,
@@ -63,10 +75,10 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
             this.play('boost', true);
             this.setVelocity(100, 0);
         } else if (this.scene.cursors.down.isDown) {
-            this.play('noBoost', true);
+            this.play('sideways', true);
             this.setVelocity(0, 100);
         } else if (this.scene.cursors.up.isDown) {
-            this.play('noBoost', true);
+            this.play('sideways', true);
             this.setVelocity(0, -100);
         }
     }
