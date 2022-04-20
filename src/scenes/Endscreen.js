@@ -22,12 +22,11 @@ export default class Endscreen extends Phaser.Scene {
         this.canvas = this.sys.game.canvas;
         this.#centerX = this.canvas.width/2;
         this.#centerY = this.canvas.height/2 -85;
-        console.log(this.#centerX, this.#centerY);
-        scoreboardText = [
-            'Level: ' + 0,
-            'Lives: ' + 0,
-            'Score: ' + 0,
-        ];
+        // scoreboardText = [
+        //     'Level: ' + 0,
+        //     'Lives: ' + 0,
+        //     'Score: ' + 0,
+        // ];
         const style = {fontFamily: 'Arial', fontSize: '50px',
             fontStyle: 'italic', color: '#00ff00', backgroundColor: '#000000',
             align: 'center'};

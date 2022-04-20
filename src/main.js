@@ -36,3 +36,4 @@ game.scene.add('endScreen', endScreen);
 game.scene.add('pauseMenu', pauseMenu);
 
 game.scene.start('mainGame').start('pauseMenu');
+// game.scene.start('endScreen');

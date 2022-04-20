@@ -21,7 +21,6 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
         this.#initAnimations();
         // TODO Scalemanager
         this.setScale(0.1);
-        this.angle = 90;
         this.body.allowGravity = false;
     }
     /**
@@ -46,7 +45,7 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
             frames: this.scene.anims.generateFrameNames('rocket', {
                 prefix: 'rocket',
                 suffix: '.png',
-                start: 2,
+                start: 1,
                 end: 1,
                 zeroPad: 2,
             }),
