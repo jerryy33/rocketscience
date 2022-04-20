@@ -6,6 +6,13 @@ import createEnum from './PauseStateEum.js';
  */
 export default class PauseButton extends Button {
     static #STATES = createEnum(['PAUSED', 'NOT_PAUSED']);
+    static #STYLING = {
+        onPointerOverStyle: {fill: '#f39c12'},
+        onPointerOutStyle: {fill: '#ffff'},
+        style: {fontFamily: 'Arial', fontSize: '14px',
+            fontStyle: 'bold', color: '#ffff', backgroundColor: '#000000',
+            align: 'center'},
+    };
     #state;
     /**
      * @constructor
@@ -14,7 +21,7 @@ export default class PauseButton extends Button {
      */
     constructor(scene) {
         super(scene.canvas.width- 40, 40,
-            'Pause', scene);
+            'Pause', scene, PauseButton.#STYLING);
         this.#state = PauseButton.#STATES.NOT_PAUSED;
         this.#pauseOrResume();
     }
