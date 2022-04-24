@@ -1,0 +1,28 @@
+{"frames": {
+
+"rocket01.png":
+{
+	"frame": {"x":0,"y":0,"w":630,"h":235},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":630,"h":235},
+	"sourceSize": {"w":630,"h":235}
+},
+"rocket02.png":
+{
+	"frame": {"x":630,"y":0,"w":840,"h":235},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":840,"h":235},
+	"sourceSize": {"w":840,"h":235}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Rocket_Sprite.png",
+	"format": "RGBA8888",
+	"size": {"w":1470,"h":235},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:54487190bba6a7566e4d70515a9838fc:519cca410ba374b0561d33b56b9698d7:52eb045368cbffbc3d9b7273374af02d$"
+}
+}
