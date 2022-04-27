@@ -51,35 +51,32 @@ export default class Rocket extends Phaser.Physics.Arcade.Sprite {
             }),
             repeat: 0,
         });
-        this.scene.anims.create({
-            key: 'sideways',
-            frameRate: 10,
-            frames: this.scene.anims.generateFrameNames('rocket', {
-                prefix: 'rocket',
-                suffix: '.png',
-                start: 1,
-                end: 1,
-                zeroPad: 2,
-            }),
-            repeat: 0,
-        });
     }
     /**
      * Control the velocity based on which control key is down.
      * Down key sets the velocity downwards,
-     * the right key rightwards and the up key upwards.
-     * Also plays Animations for this class
+     * the right key rightwards, the left key leftwards and the up key upwards.
+     * Also plays Animations for this class and sets the direction
+     * the rocket is facing
      */
     move() {
+        // TODO remove code duplication and set hitbox(see todo.md)
         if (this.scene.cursors.right.isDown) {
+            this.angle = 0;
             this.play('boost', true);
             this.setVelocity(100, 0);
         } else if (this.scene.cursors.down.isDown) {
-            this.play('sideways', true);
+            this.angle = 90;
+            this.play('boost', true);
             this.setVelocity(0, 100);
         } else if (this.scene.cursors.up.isDown) {
-            this.play('sideways', true);
+            this.angle = -90;
+            this.play('boost', true);
             this.setVelocity(0, -100);
+        } else if (this.scene.cursors.left.isDown) {
+            this.play('boost', true);
+            this.angle = -180;
+            this.setVelocity(-100, 0);
         }
     }
 }
