@@ -37,8 +37,8 @@ export default class Asteroids extends Phaser.Physics.Arcade.Group {
      * @todo Since we have the world bound collision disabled,
      * this is a workaround because the specific event listener for
      * the world boud collision will not fire.
-     * Also the scene.wrap method does not provide an option to randomly
-     * generate the y position of our asteroid.
+     * Also the scene.physics.world.wrap method does not provide
+     * an option to randomly generate the y position of our asteroid.
      * //TODO improve this idea
      * @param  {Phaser.Geom.Rectangle} worldBounds the world bounds of a scene
      */
