@@ -18,16 +18,17 @@ export default class Stars extends Phaser.Physics.Arcade.Group {
             collideWorldBounds: false,
         };
         super(world, scene, config);
-        this.#setPositions();
+        this.canvas = scene.canvas;
     }
     /**
      *
      */
-    #setPositions() {
+    spawnIn() {
+        console.log(this.canvas.height);
         this.children.iterate((child) =>{
-            child.setPosition(Phaser.Math.RND.between(
-                this.scene.sys.canvas.width/3, this.scene.sys.canvas.width),
-            Phaser.Math.RND.between(0, this.scene.sys.canvas.height));
+            // make start values responsive TODO
+            child.setRandomPosition(-300, 30, this.canvas.width-50,
+                this.canvas.height-50);
             child.setScale(1.2);
         });
     }
