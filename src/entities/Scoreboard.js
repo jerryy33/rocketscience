@@ -10,7 +10,7 @@ export default class Scoreboard {
      * will be created
      */
     constructor(data, scene) {
-        data.set('lives', 3);
+        data.set('lives', 300);
         data.set('level', 0);
         data.set('score', 0);
 
@@ -24,6 +24,10 @@ export default class Scoreboard {
         this.text = scene.add.text(10, 10, '',
             {font: 'Arial', fill: '#00ff00'});
         this.text.setText(this.scoreboardText);
+        // Text needs to be fixed because our background is moving
+        this.text.setScrollFactor(0);
+        // higher depth === higher z index
+        this.text.setDepth(2);
 
         this.data = data;
         this.scene = scene;

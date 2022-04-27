@@ -16,7 +16,7 @@ console.log(width, height);
 const config = {
     type: Phaser.AUTO,
     scale: {
-        mode: Phaser.Scale.RESIZE,
+        mode: Phaser.Scale.NONE,
         // autoCenter: Phaser.Scale.CENTER_BOTH,
         width: width,
         height: height,
