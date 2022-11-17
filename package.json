@@ -27,7 +27,7 @@
     "tern": "^0.24.3",
     "tern-phaser": "^0.2.0",
     "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.2",
+    "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
