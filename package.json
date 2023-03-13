@@ -23,7 +23,7 @@
     "eslint": "^8.30.0",
     "eslint-config-google": "^0.14.0",
     "html-webpack-plugin": "^5.5.0",
-    "style-loader": "^3.3.1",
+    "style-loader": "^3.3.2",
     "tern": "^0.24.3",
     "tern-phaser": "^0.2.0",
     "webpack": "^5.68.0",
